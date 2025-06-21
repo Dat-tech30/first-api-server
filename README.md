@@ -4,7 +4,7 @@ This is a simple custom API built with **FastAPI** and **MongoDB** that allows u
 
 ---
 
-## 🚀 Features
+🚀 Features
 
 - ✅ Add new books
 - 📖 Get all books
@@ -14,7 +14,7 @@ This is a simple custom API built with **FastAPI** and **MongoDB** that allows u
 
 ---
 
-## 🧰 Tech Stack
+🧰 Tech Stack
 
 - Python 3.10+
 - FastAPI
@@ -25,13 +25,12 @@ This is a simple custom API built with **FastAPI** and **MongoDB** that allows u
 
 ---
 
-## 🛠️ Setup Instructions
+🛠️ Setup Instructions
 
-> Follow these steps to run the API on your local machine.
 
 ---
 
-### 1. 📦 Clone the repository
+📦 1. Clone the repository
 
 
 git clone https://github.com/your-username/your-repo-name.git
@@ -39,11 +38,11 @@ cd your-repo-name
 
 
 
-## 🐍 2. Create and activate a virtual environment
+🐍 2. Create and activate a virtual environment
 
 Open your terminal in the project folder and run:
 
-```bash
+
 python -m venv env      # create a virtual environment called "env"
 
 # Activate it:
