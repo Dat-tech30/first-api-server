@@ -45,20 +45,22 @@ Open your terminal in the project folder and run:
 
 python -m venv env      # create a virtual environment called "env"
 
-# Activate it:
-# On Windows (PowerShell):
-env\Scripts\activate
+Activate it:
+On Windows (PowerShell):
+    env\Scripts\activate
 
-# On macOS/Linux:
-source env/bin/activate
+On macOS/Linux:
+    source env/bin/activate
 
 📥 3. Install the required packages
 
-# If you have a requirements.txt
-pip install -r requirements.txt
+If you have a requirements.txt
 
-# If not, install manually:
-pip install fastapi uvicorn motor python-dotenv
+    I. pip install -r requirements.txt
+
+If not, install manually:
+
+    I. pip install fastapi uvicorn motor python-dotenv
 
 
 🔐 4. input your username and passsword in the cluster address with your MongoDB Atlas connection string .env file
