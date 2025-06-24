@@ -53,17 +53,31 @@ async def get_books():
 # UPDATE: Update a book by ID
 @app.put("/books/{id}")
 async def update_book(id: str, data: dict):
-    result = await collection.update_one({"_id": ObjectId(id)}, {"$set": data}) # finds the book by id and changes only the fields passed in the data
-    if result.modified_count == 0: # if no book was actually changed
+    # 1. Added try-except to catch invalid ObjectId errors and return 400 Bad Request instead of server error 
+    # 2. Used acknowledged update check with matched_count, because modified_count==0 if no fields changed but book exists 
+    try:
+        obj_id = ObjectId(id)
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid book ID format")
+
+    result = await collection.update_one({"_id": obj_id}, {"$set": data}) # finds the book by id and changes only the fields passed in the data 
+    if result.matched_count == 0: # if no book was actually found
         raise HTTPException(status_code=404, detail="Book not found")
-    updated = await collection.find_one({"_id": ObjectId(id)}) # grab the updated book from the data based
-    return book_helper(updated) # return the updated book
+    updated = await collection.find_one({"_id": obj_id}) # grab the updated book from the data based 
+    return book_helper(updated) # return the updated book 
 # ---------------------------- Section ------------------------------
 
 # DELETE: Delete a book by ID
 @app.delete("/books/{id}")
 async def delete_book(id: str):
-    result = await collection.delete_one({"_id": ObjectId(id)}) # tries to delete the book with the given MongoDB id
-    if result.deleted_count == 0: # if no book was deleted (wrong ID) return an error
-        raise HTTPException(status_code=404, detail="Book not found")
-    return {"message": "Book deleted"} # return a confirmation message if the book was deleted
+    # Added try-except for invalid ObjectId format for better error handling 
+    try:
+        obj_id = ObjectId(id)
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid book ID format")
+    result = await collection.delete_one({"_id": obj_id}) # tries to delete the book with the given MongoDB id 
+    if result.deleted_count == 0: # if no book was deleted (wrong ID) return an error 
+        raise HTTPException(status_code=404, detail="Book not found") 
+    return {"message": "Book deleted"} # return a confirmation message if the book was deleted 
+
+

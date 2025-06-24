@@ -22,6 +22,7 @@ This is a simple custom API built with **FastAPI** and **MongoDB** that allows u
 - Motor (Async MongoDB client)
 - Uvicorn (for running the server)
 - python-dotenv (for environment variables)
+- Pytest & HTTPX for testing
 
 ---
 
@@ -82,3 +83,19 @@ open new browsers and paste this new URL
 Interactive Docs: http://localhost:8000/docs
 
 Endpoint: http://localhost:8000/
+
+
+
+
+How to Run Tests:
+
+pytest --cov=main --cov-report=term-missing
+
+
+
+
+📊 **Test Coverage**
+
+
+
+![Test Coverage Screenshot](images/tests.png)
